@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <autopilot_topic>false</autopilot_topic>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{
+  "graph_api_version": "1.0.42",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "a1da8f744d0f4670a2950f7edcfb5c4f": {
+          "id": "a1da8f744d0f4670a2950f7edcfb5c4f",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "206c44fe226444928f86978f15a17190": {
+          "id": "206c44fe226444928f86978f15a17190",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "26719a6177174503bed60f14faa38820": {
+          "id": "26719a6177174503bed60f14faa38820",
+          "stepType": "Prompt",
+          "name": "Get Question",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "How can I help you?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "2e3cfabe25114b48b106d0e862910bfd",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          }
+        },
+        "81317f51a7584b7ba8359691109cfa2a": {
+          "id": "81317f51a7584b7ba8359691109cfa2a",
+          "stepType": "ScriptOutput",
+          "name": "OpenAI Request",
+          "output_type": "single_part",
+          "script": "(function execute() {\n    gs.info(\"OpenAI request started for: \"+ vaInputs.get_question);\n    \n    var userSysId = gs.getUserID();\n\n    var grOnboarding = new GlideRecord('x_842166_genny_ai_onboarding_request');\n    grOnboarding.addQuery('new_hire', userSysId);\n    grOnboarding.query();\n    \n    var kbData = '';\n\n    if (grOnboarding.next()) {\n      var grLearningLake = new GlideRecord('x_842166_genny_ai_learning_lake');\n      grLearningLake.addQuery('onboarding_request', grOnboarding.sys_id);\n      grLearningLake.query();\n\n      while (grLearningLake.next()) {\n        kbData += grLearningLake.knowledge_base.content + '. ';\n      }\n    }\n\n    kbData = kbData.replace(/(&lt;.+?&gt;|\\n|\")/g, '');\n\n    gs.info(\"KB data : \"+ kbData);\n\n\n    var gptRequest = new sn_ws.RESTMessageV2();\n    gptRequest.setHttpMethod('post');\n    gptRequest.setEndpoint('https://sa-eus-subprod-azureopenai.openai.azure.com/openai/deployments/text-davinci-003/completions?api-version=2023-05-15')\n    gptRequest.setRequestHeader('api-key', 'a84459c9de144b25968da4788039caba')\n    gptRequest.setRequestBody(\"{\\\"prompt\\\": \\\"Pretend you are a chatbot. Your job is to answer the question with the following context and prompt. Your answer should be formatted as HTML. Context: \"+ kbData +\", Prompt:\" + vaInputs.get_question + \"\\\",\\\"max_tokens\\\" : 1024}\");\n    \n    var gptResponse = gptRequest.execute();\n\n    var jsonResponse = JSON.parse(gptResponse.getBody());\n\n\n     var singleOutMsg = new sn_cs.SinglePartOutMsg();\n     singleOutMsg.setHtmlPart(jsonResponse.choices[0].text.replace('\\\\n', ''));\n     return singleOutMsg;\n\n})()\n",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "61ee7d9c62be40179ad96f205f52930b": {
+          "stepType": "ChoicePrompt",
+          "name": "more",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Do you have more questions?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "c477b5636b3e4042a75f6fa9b4343424",
+          "id": "61ee7d9c62be40179ad96f205f52930b",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "12aad34ee9be473f91ad07e800ed579b": {
+          "id": "12aad34ee9be473f91ad07e800ed579b",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "dc1690a65185482fb5209610d83d9e1b": {
+          "id": "dc1690a65185482fb5209610d83d9e1b",
+          "stepType": "TextOutput",
+          "name": "Greeting",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Hello! I'm Genny. Your personal onboarding assistant. "
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "eb5c1a2d05454766a6bf955b57e671d9"
+            }
+          ],
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "1539bd93116841b7a1cd48846fc95111",
+          "edgeType": "Branch",
+          "source": "12aad34ee9be473f91ad07e800ed579b",
+          "target": "26719a6177174503bed60f14faa38820",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.more=Yes",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "c72a4cfc38bb42b68a44507c10da4120",
+          "edgeType": "Edge",
+          "source": "26719a6177174503bed60f14faa38820",
+          "target": "81317f51a7584b7ba8359691109cfa2a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f79fc5052c3044ebbc4a6850e8eca88e",
+          "edgeType": "Edge",
+          "source": "81317f51a7584b7ba8359691109cfa2a",
+          "target": "61ee7d9c62be40179ad96f205f52930b",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e693a144288945feb4a6e7a77c44183e",
+          "edgeType": "Edge",
+          "source": "61ee7d9c62be40179ad96f205f52930b",
+          "target": "12aad34ee9be473f91ad07e800ed579b",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "938ed025a03f46c69df99037ef0bcb53",
+          "edgeType": "Branch",
+          "source": "12aad34ee9be473f91ad07e800ed579b",
+          "target": "206c44fe226444928f86978f15a17190",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.more=No",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "2eb9e7bd09414591a4bec614935072c3",
+          "edgeType": "Edge",
+          "source": "a1da8f744d0f4670a2950f7edcfb5c4f",
+          "target": "dc1690a65185482fb5209610d83d9e1b",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "cfbe68bfad184773b46817d67c747bab",
+          "edgeType": "Edge",
+          "source": "dc1690a65185482fb5209610d83d9e1b",
+          "target": "26719a6177174503bed60f14faa38820",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "2e3cfabe25114b48b106d0e862910bfd": {
+      "id": "2e3cfabe25114b48b106d0e862910bfd",
+      "name": "get_question",
+      "label": "Get Question",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTY4Nzk4MjgyMjI0MCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "26719a6177174503bed60f14faa38820",
+      "isHidden": false
+    },
+    "c477b5636b3e4042a75f6fa9b4343424": {
+      "id": "c477b5636b3e4042a75f6fa9b4343424",
+      "name": "more",
+      "label": "More",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes",
+          "value": "Yes"
+        },
+        {
+          "label": "No",
+          "value": "No"
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "61ee7d9c62be40179ad96f205f52930b",
+      "isHidden": false
+    }
+  }
+}</graph>
+        <key_phrases>Genny AI VA</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>Genny AI VA</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <root_topic_id/>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 20:06:52</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>548fecd047bb61102e9ce332736d43ca</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Genny AI VA</sys_name>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_update_name>sys_cb_topic_548fecd047bb61102e9ce332736d43ca</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 22:58:37</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+    </sys_cb_topic>
+</record_update>

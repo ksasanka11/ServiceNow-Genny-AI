@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sys_nlu_model_sys_entity">
+    <m2m_sys_nlu_model_sys_entity action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <entity>HARDWARE</entity>
+        <model display_value="Genny AI Model">8298d498473b61102e9ce332736d43b3</model>
+        <sys_class_name>m2m_sys_nlu_model_sys_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 18:26:55</sys_created_on>
+        <sys_entity/>
+        <sys_id>84a81c98473b61102e9ce332736d439d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Genny AI Model.</sys_name>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_update_name>m2m_sys_nlu_model_sys_entity_84a81c98473b61102e9ce332736d439d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 18:26:55</sys_updated_on>
+    </m2m_sys_nlu_model_sys_entity>
+</record_update>

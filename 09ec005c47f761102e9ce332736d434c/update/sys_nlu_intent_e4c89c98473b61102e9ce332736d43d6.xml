@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_nlu_intent">
+    <sys_nlu_intent action="INSERT_OR_UPDATE">
+        <confidence_threshold>0.6</confidence_threshold>
+        <description/>
+        <enable>true</enable>
+        <model display_value="Genny AI Model">8298d498473b61102e9ce332736d43b3</model>
+        <name>Trigger intent</name>
+        <origin/>
+        <override_confidence_threshold>false</override_confidence_threshold>
+        <primary_intent/>
+        <status>draft</status>
+        <sys_class_name>sys_nlu_intent</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 18:27:29</sys_created_on>
+        <sys_id>e4c89c98473b61102e9ce332736d43d6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Trigger intent</sys_name>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_update_name>sys_nlu_intent_e4c89c98473b61102e9ce332736d43d6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 18:27:29</sys_updated_on>
+    </sys_nlu_intent>
+</record_update>

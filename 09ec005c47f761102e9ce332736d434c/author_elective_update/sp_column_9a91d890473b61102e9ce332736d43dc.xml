@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="DELETE">
+        <class_name/>
+        <order>1</order>
+        <size>12</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="1">9e91d890473b61102e9ce332736d43d9</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 17:56:12</sys_created_on>
+        <sys_id>9a91d890473b61102e9ce332736d43dc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_update_name>sp_column_9a91d890473b61102e9ce332736d43dc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 17:56:12</sys_updated_on>
+    </sp_column>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Genny AI">09ec005c47f761102e9ce332736d434c</application>
+        <file_path/>
+        <instance_id>3bcdad4edb0525d09df22f17d496195f</instance_id>
+        <instance_name>dev149778</instance_name>
+        <name>sp_column_9a91d890473b61102e9ce332736d43dc</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>12</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">9e91d890473b61102e9ce332736d43d9</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-06-28 17:56:12</sys_created_on><sys_id>9a91d890473b61102e9ce332736d43dc</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package><sys_policy/><sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope><sys_update_name>sp_column_9a91d890473b61102e9ce332736d43dc</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-06-28 17:56:12</sys_updated_on></sp_column></record_update>]]></payload>
+        <payload_hash>1069073312</payload_hash>
+        <record_name>1</record_name>
+        <reverted_from/>
+        <source>01ec005c47f761102e9ce332736d434f</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 17:56:12</sys_created_on>
+        <sys_id>9e91d890473b61102e9ce332736d43de</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18903260c1f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 17:56:12</sys_updated_on>
+        <type>Column</type>
+        <update_guid>d291d8904f3b6110f2c1355cb5ee2ede</update_guid>
+        <update_guid_history>d291d8904f3b6110f2c1355cb5ee2ede:1069073312</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="1">67f190d0473b61102e9ce332736d43c6</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 17:57:56</sys_created_on>
+        <sys_db_object display_value="" name="sp_column">sp_column</sys_db_object>
+        <sys_id>51a367b0a81a4cd480b8649ecd1d4c90</sys_id>
+        <sys_metadata>9a91d890473b61102e9ce332736d43dc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_scope_delete display_value="">0a7b18a42d7247cd9f7b74db1b23a749</sys_scope_delete>
+        <sys_update_name>sp_column_9a91d890473b61102e9ce332736d43dc</sys_update_name>
+        <sys_update_version display_value="sp_column_9a91d890473b61102e9ce332736d43dc">9e91d890473b61102e9ce332736d43de</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 17:57:56</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $http) {
+	var c = this;
+
+	c.data = {
+		buddy: '',
+		manager: '',
+		newHire: '',
+		resources: [{}],
+		users: c.data.users || [],
+		knowledgeArticles: c.data.knowledgeArticles || []
+	};
+
+	c.addResource = function() {
+		c.data.resources.push({});
+	};
+
+	c.removeResource = function(index) {
+		c.data.resources.splice(index, 1);
+	};
+
+	c.submitForm = function() {
+
+		const update = {
+			buddy: c.data.buddy,
+			manager: c.data.manager,
+			newHire: c.data.newHire,
+			resources: c.data.resources
+		};
+		var result = confirm("Are you sure you would like to create this experience?")
+		if(result){
+			c.server.update(update);
+			alert("Experience Created!")
+
+			c.data = {
+				buddy: '',
+				manager: '',
+				newHire: '',
+				resources: [{}],
+				users: c.data.users || [],
+				knowledgeArticles: c.data.knowledgeArticles || []
+			};
+		}
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+    font-family: Arial, sans-serif;
+}
+
+.page-container{
+	background-color: #302F4B;	
+  padding: 8vh
+}
+
+.header-img{
+  display:block;
+  margin:auto;
+}
+
+legend {
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.title-container {
+    padding-bottom: 1em;
+}
+
+.section-title{
+  color: black;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.title{
+	color: black;
+  font-size: 1em;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center; 
+}
+
+.resource {
+  font-size: 1.2em;
+	padding-bottom: 1vw;
+}
+
+.context {
+	background-color: #D1D2EE;
+  padding: 1vw;
+  border-radius: 4px;
+}
+
+.onboarding-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.onboarding-form fieldset {
+    border: none;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+.onboarding-form legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.onboarding-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.onboarding-form select, 
+.onboarding-form input[type="text"],
+.onboarding-form input[type="url"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.onboarding-form button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.onboarding-form button[type="button"] {
+    background-color: #6c757d;
+    margin-right: 10px;
+}
+
+.onboarding-form button:hover {
+    background-color: #0056b3;
+}
+
+.onboarding-form button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+.submit{
+	background-color: #4f52bd !important;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>genny_manager</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>genny_manager</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  if (!input) {
+    data.users = [];
+    data.knowledgeArticles = [];
+
+    var grUsers = new GlideRecord('sys_user');
+    grUsers.query();
+
+    while (grUsers.next()) {
+      data.users.push({
+        sys_id: grUsers.sys_id + '',
+        name: grUsers.name + ''
+      });
+    }
+
+    var grKB = new GlideRecord('kb_knowledge');
+    grKB.query();
+
+    while (grKB.next()) {
+      data.knowledgeArticles.push({
+        sys_id: grKB.sys_id + '',
+        title: grKB.short_description + ''
+      });
+    }
+  } else {
+    var grOnboarding = new GlideRecord('x_842166_genny_ai_onboarding_request');
+    grOnboarding.initialize();
+    grOnboarding.buddy = input.buddy;
+    grOnboarding.manager = input.manager;
+    grOnboarding.new_hire = input.newHire;
+    grOnboarding.insert();
+
+    input.resources.forEach(function(resource) {
+      var grLearningLake = new GlideRecord('x_842166_genny_ai_learning_lake');
+      grLearningLake.initialize();
+      grLearningLake.description = resource.description;
+      grLearningLake.name = resource.resourceName;
+			grLearningLake.function = resource.function;
+      grLearningLake.type = resource.resourceType;
+
+      if (resource.resourceType == 'external_link') {
+        grLearningLake.external_link = resource.resourceLink;
+      } else if (resource.resourceType == 'knowledge_base') {
+        grLearningLake.knowledge_base = resource.resourceKB;
+      }
+
+      grLearningLake.onboarding_request = grOnboarding.sys_id;
+      grLearningLake.insert();
+    });
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 18:19:35</sys_created_on>
+        <sys_id>b4f65818473b61102e9ce332736d4353</sys_id>
+        <sys_mod_count>101</sys_mod_count>
+        <sys_name>genny_manager</sys_name>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_update_name>sp_widget_b4f65818473b61102e9ce332736d4353</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-29 21:13:55</sys_updated_on>
+        <template><![CDATA[<div class="page-container">
+   
+  <div>
+    <img class="header-img" src="woman-and-man-on-laptop.png" width="360"/>
+  </div>
+  <div class="onboarding-form">
+    <div class="title-container">
+          <div class="section-title">
+					Create an Onboarding Buddy for your New Hire! 
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.18766 1.66984C7.89127 1.56933 8.44411 1.01649 8.54462 0.312884C8.56823 0.147658 8.80678 0.147658 8.83038 0.312884C8.9309 1.01649 9.48373 1.56933 10.1873 1.66984C10.3526 1.69344 10.3526 1.932 10.1873 1.9556C9.48373 2.05612 8.9309 2.60895 8.83038 3.31256C8.80678 3.47778 8.56823 3.47778 8.54462 3.31256C8.44411 2.60895 7.89127 2.05612 7.18767 1.9556C7.02244 1.932 7.02244 1.69344 7.18766 1.66984Z" fill="#151920"/>
+        <path d="M2.3136 10.6875C4.68438 10.2924 6.54218 8.4346 6.93731 6.06382L7.12925 4.91219C7.18728 4.56403 7.68772 4.56403 7.74575 4.91219L7.93769 6.06382C8.33282 8.4346 10.1906 10.2924 12.5614 10.6875L13.713 10.8795C14.0612 10.9375 14.0612 11.4379 13.713 11.496L12.5614 11.6879C10.1906 12.083 8.33282 13.9408 7.93769 16.3116L7.74575 17.4633C7.68772 17.8114 7.18728 17.8114 7.12925 17.4633L6.93731 16.3116C6.54218 13.9408 4.68438 12.083 2.3136 11.6879L1.16197 11.496C0.813807 11.4379 0.813806 10.9375 1.16197 10.8795L2.3136 10.6875Z" fill="#151920"/>
+        <path d="M13.3538 2.23105C13.1143 3.42853 12.1783 4.36456 10.9808 4.60406L10.4463 4.71096C10.1984 4.76053 10.1984 5.11491 10.4463 5.16448L10.9808 5.27139C12.1783 5.51088 13.1143 6.44691 13.3538 7.64439L13.4607 8.17892C13.5103 8.42679 13.8647 8.42679 13.9143 8.17892L14.0212 7.64439C14.2607 6.44691 15.1967 5.51088 16.3942 5.27139L16.9287 5.16448C17.1766 5.11491 17.1766 4.76053 16.9287 4.71096L16.3942 4.60405C15.1967 4.36456 14.2607 3.42853 14.0212 2.23105L13.9143 1.69652C13.8647 1.44865 13.5103 1.44865 13.4607 1.69652L13.3538 2.23105Z" fill="#151920"/>
+        </svg>
+        </div>
+    		<div>
+          This form will populate your new hire's homepage for onboarding onto their team. 
+    		</div>
+          </div>
+
+    <form ng-submit="c.submitForm()">
+      <fieldset>
+         <div>
+          <label for="newHire">Name of New Hire</label>
+          <select id="newHire" ng-model="c.data.newHire" ng-options="user.sys_id as user.name for user in c.data.users">
+            <option value="">--Please choose a new hire--</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="buddy">Name of their Buddy</label>
+          <select id="buddy" ng-model="c.data.buddy" ng-options="user.sys_id as user.name for user in c.data.users">
+            <option value="">--Please choose a buddy--</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="manager">Name of their Manager</label>
+          <select id="manager" ng-model="c.data.manager" ng-options="user.sys_id as user.name for user in c.data.users">
+            <option value="">--Please choose a manager--</option>
+          </select>
+        </div>
+
+      </fieldset>
+
+      <br>
+
+      <div class="context">
+        <div class="title">Helpful tips<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"/></svg></div>
+        Consider what education and software is essential for your new hire to ramp up. Include links to explanations of the company, their team, and internal workflows. Add instructions for all the software they need to access.
+      </div>
+
+      <br>
+
+      <fieldset ng-repeat="resource in c.data.resources track by $index">
+        
+        <div class="title resource">
+          Resource {{$index+1}}
+        </div>
+
+        <div>
+          <label for="function">Education or Software Access</label>
+          <select id="function" ng-model="resource.function">
+            <option value="">--Please choose a type--</option>
+            <option value="education">Education</option>
+            <option value="software_access">Software Access</option>
+          </select>
+          <br>
+        </div>
+        
+        <div>
+          <label for="resourceType">Resource Type</label>
+          <select id="resourceType" ng-model="resource.resourceType">
+            <option value="">--Please choose a type--</option>
+            <option value="external_link">External Link</option>
+            <option value="knowledge_base">Knowledge Base</option>
+          </select>
+          <br>
+        </div>
+
+        <div ng-show="resource.resourceType">
+          <label for="resourceName">Label</label>
+          <input type="text" id="resourceName" ng-model="resource.resourceName">
+
+          <label for="resourceDescription">Description</label>
+          <input type="text" id="resourceDescription" ng-model="resource.resourceDescription">
+        </div>
+
+        <div ng-show="resource.resourceType == 'external_link'">
+          <label for="resourceLink">Link</label>
+          <input type="url" id="resourceLink" ng-model="resource.resourceLink">
+        </div>
+
+        <div ng-show="resource.resourceType == 'knowledge_base'">
+          <label for="resourceKB">Knowledge Base Article</label>
+          <select id="resourceKB" ng-model="resource.resourceKB" ng-options="article.sys_id as article.title for article in c.data.knowledgeArticles">
+            <option value="">--Please choose an article--</option>
+          </select>
+         <br><br>
+        </div>
+
+        <button type="button" ng-click="c.removeResource($index)">Remove</button>
+        <br><br>
+      </fieldset>
+
+      <button type="button" ng-click="c.addResource()">Add Resource</button>
+
+      <button class="submit" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

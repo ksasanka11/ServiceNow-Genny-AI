@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic_language">
+    <sys_cb_topic_language action="DELETE">
+        <cb_topic_id display_value="Genny AI VA">5e7b509c473b61102e9ce332736d4348</cb_topic_id>
+        <language_code>en</language_code>
+        <nlu_entities>[{"node_id":"c6b11b9c2a5b4433b7df1e90a7f5ad81","variable_name":"get_question","nlu_entity":"","nlu_entity_label":""},{"node_id":"6c9f79a1310a43cfa5b665def8cceba4","variable_name":"more_questions","nlu_entity":"","nlu_entity_label":""}]</nlu_entities>
+        <nlu_intent>Onboarding</nlu_intent>
+        <nlu_intent_label>Onboarding</nlu_intent_label>
+        <nlu_model>ml_x_842166_x_842166_gennai_global_0397bffb47a721102e9ce332736d437f</nlu_model>
+        <nlu_model_label>Onboarding VA Model</nlu_model_label>
+        <nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider>
+        <sys_class_name>sys_cb_topic_language</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 18:39:21</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>967b509c473b61102e9ce332736d434c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_update_name>sys_cb_topic_language_967b509c473b61102e9ce332736d434c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 19:53:04</sys_updated_on>
+    </sys_cb_topic_language>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Genny AI">09ec005c47f761102e9ce332736d434c</application>
+        <file_path/>
+        <instance_id>3bcdad4edb0525d09df22f17d496195f</instance_id>
+        <instance_name>dev149778</instance_name>
+        <name>sys_cb_topic_language_967b509c473b61102e9ce332736d434c</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic_language"><sys_cb_topic_language action="INSERT_OR_UPDATE"><cb_topic_id display_value="Genny AI VA">5e7b509c473b61102e9ce332736d4348</cb_topic_id><language_code>en</language_code><nlu_entities>[{"node_id":"c6b11b9c2a5b4433b7df1e90a7f5ad81","variable_name":"get_question","nlu_entity":"","nlu_entity_label":""},{"node_id":"6c9f79a1310a43cfa5b665def8cceba4","variable_name":"more_questions","nlu_entity":"","nlu_entity_label":""}]</nlu_entities><nlu_intent>Onboarding</nlu_intent><nlu_intent_label>Onboarding</nlu_intent_label><nlu_model>ml_x_842166_x_842166_gennai_global_0397bffb47a721102e9ce332736d437f</nlu_model><nlu_model_label>Onboarding VA Model</nlu_model_label><nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider><sys_class_name>sys_cb_topic_language</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-06-28 18:39:21</sys_created_on><sys_domain>global</sys_domain><sys_id>967b509c473b61102e9ce332736d434c</sys_id><sys_mod_count>1</sys_mod_count><sys_name/><sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package><sys_policy/><sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope><sys_update_name>sys_cb_topic_language_967b509c473b61102e9ce332736d434c</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-06-28 19:53:04</sys_updated_on></sys_cb_topic_language></record_update>]]></payload>
+        <payload_hash>-400541360</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>01ec005c47f761102e9ce332736d434f</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 19:53:04</sys_created_on>
+        <sys_id>ca5c241047bb61102e9ce332736d43a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18903910aae0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 19:53:04</sys_updated_on>
+        <type>CB Topic Language</type>
+        <update_guid>c25c2410bcbb61102b63216d59c073a5</update_guid>
+        <update_guid_history>c25c2410bcbb61102b63216d59c073a5:-400541360,2e9dd050547b6110ccdb2a847eabff3d:2099949873,75cc5010dc7b611003400188fffd196a:-922898015,5a7b509ced3b6110ae93776c96b92b4e:21832683</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-06-28 20:04:23</sys_created_on>
+        <sys_db_object display_value="" name="sys_cb_topic_language">sys_cb_topic_language</sys_db_object>
+        <sys_id>52b1cc8dd76a4e8898e6578030c41990</sys_id>
+        <sys_metadata>967b509c473b61102e9ce332736d434c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Genny AI" source="x_842166_genny_ai">09ec005c47f761102e9ce332736d434c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Genny AI">09ec005c47f761102e9ce332736d434c</sys_scope>
+        <sys_scope_delete display_value="">0a7b18a42d7247cd9f7b74db1b23a749</sys_scope_delete>
+        <sys_update_name>sys_cb_topic_language_967b509c473b61102e9ce332736d434c</sys_update_name>
+        <sys_update_version display_value="sys_cb_topic_language_967b509c473b61102e9ce332736d434c">ca5c241047bb61102e9ce332736d43a5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-06-28 20:04:23</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

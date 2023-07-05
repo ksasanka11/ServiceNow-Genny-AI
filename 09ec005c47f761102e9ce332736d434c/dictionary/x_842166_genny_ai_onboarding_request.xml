@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="b2adc49c47f761102e9ce332736d43c9" label="Onboarding Request" max_length="40" name="x_842166_genny_ai_onboarding_request" type="collection">
+        <element attributes="encode_utf8=false" label="Buddy" max_length="32" name="buddy" reference="sys_user" type="reference"/>
+        <element attributes="encode_utf8=false" label="Manager" mandatory="true" max_length="32" name="manager" reference="sys_user" type="reference"/>
+        <element attributes="encode_utf8=false" label="New hire" mandatory="true" max_length="32" name="new_hire" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <index name="index">
+            <element name="buddy"/>
+        </index>
+        <index name="index2">
+            <element name="manager"/>
+        </index>
+        <index name="index3">
+            <element name="new_hire"/>
+        </index>
+    </element>
+</database>

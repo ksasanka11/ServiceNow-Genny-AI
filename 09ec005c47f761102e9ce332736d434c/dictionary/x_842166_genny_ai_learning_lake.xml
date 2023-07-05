@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="0b9f8810473b61102e9ce332736d4350" label="Learning Lake" max_length="40" name="x_842166_genny_ai_learning_lake" type="collection">
+        <element label="Category" max_length="40" name="category" type="string"/>
+        <element label="Completed" max_length="40" name="completed" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="8000" name="description" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="External Link" max_length="1024" name="external_link" type="url"/>
+        <element label="Function" max_length="40" name="function" type="string"/>
+        <element attributes="encode_utf8=false" label="Knowledge Base" max_length="32" name="knowledge_base" reference="sn_km_mr_st_kb_knowledge" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element attributes="encode_utf8=false" label="onboarding request" mandatory="true" max_length="32" name="onboarding_request" reference="x_842166_genny_ai_onboarding_request" type="reference"/>
+        <element label="Summary" max_length="8000" name="summary" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="knowledge_base" label="Type" mandatory="true" max_length="40" name="type" type="string">
+            <choice>
+                <element inactive_on_update="false" label="External Link" value="external_link"/>
+                <element inactive_on_update="false" label="Knowledge Base" value="knowledge_base"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="knowledge_base"/>
+        </index>
+        <index name="index2">
+            <element name="onboarding_request"/>
+        </index>
+    </element>
+</database>
